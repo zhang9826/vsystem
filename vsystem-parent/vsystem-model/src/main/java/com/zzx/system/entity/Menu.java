@@ -1,38 +1,68 @@
 package com.zzx.system.entity;
 
+import java.util.List;
+
 /**
- * 菜单实体类
+ *   菜单实体类
+ * 
  * @author zzx
  *
- * @date 2018年10月9日
  */
 public class Menu {
-	
 	/**
 	 * 菜单id
 	 */
 	private String mId;
+	
 	/**
-	 * 被管理的url
-	 */
-	private String url;
-	/**
-	 * 路由  vue 用的
-	 */
-	private String route;
-	/**
-	 * 菜单名称
-	 */
-	private String name;
-	/**
-	 * 父菜单的id
+	 * 父菜单id
 	 */
 	private String parentId;
 	
 	/**
-	 *  菜单的展示顺序
+	 * 允许登录访问的url
 	 */
-	private int mOrder;
+	private String url;
+	/**
+	 * 路由
+	 */
+	private String route;
+	
+	/**
+	 * 资源名称
+	 */
+	private String name;
+	
+	/**
+	 * 子菜单
+	 */
+	private List<Menu> childrenMenus;
+	
+	private String icon;
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public List<Menu> getChildrenMenus() {
+		return childrenMenus;
+	}
+
+	public void setChildrenMenus(List<Menu> childrenMenus) {
+		this.childrenMenus = childrenMenus;
+	}
 
 	public String getmId() {
 		return mId;
@@ -42,12 +72,12 @@ public class Menu {
 		this.mId = mId;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getParentId() {
+		return parentId;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
 	public String getRoute() {
@@ -66,19 +96,9 @@ public class Menu {
 		this.name = name;
 	}
 
-	public String getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
-
-	public int getmOrder() {
-		return mOrder;
-	}
-
-	public void setmOrder(int mOrder) {
-		this.mOrder = mOrder;
+	@Override
+	public String toString() {
+		return "Menu [mId=" + mId + ", parentId=" + parentId + ", url=" + url + ", route=" + route + ", name=" + name
+				+ ", childrenMenus=" + childrenMenus + "]";
 	}
 }

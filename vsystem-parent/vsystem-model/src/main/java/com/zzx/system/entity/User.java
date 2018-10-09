@@ -1,12 +1,5 @@
 package com.zzx.system.entity;
 
-/**
- * 
- * 用户实体类
- * @author zzx
- *
- * @date 2018年10月9日
- */
 public class User {
 	/**
 	 * 用户id
@@ -21,21 +14,22 @@ public class User {
 	 */
 	private String password;
 	/**
+	 * 昵称
+	 */
+	private String petname;
+	/**
 	 * 电话号码
 	 */
 	private String telephone;
+	
 	/**
 	 * 家庭住址
 	 */
 	private String address;
 	/**
-	 * 是否启用   1 启用 0 禁用
+	 * 是否禁用  1 启用 0 禁用
 	 */
 	private String enabled;
-	/**
-	 * 昵称
-	 */
-	private String petname;
 	public String getuId() {
 		return uId;
 	}
@@ -54,6 +48,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getPetname() {
+		return petname;
+	}
+	public void setPetname(String petname) {
+		this.petname = petname;
+	}
 	public String getTelephone() {
 		return telephone;
 	}
@@ -71,11 +71,5 @@ public class User {
 	}
 	public void setEnabled(String enabled) {
 		this.enabled = enabled;
-	}
-	public String getPetname() {
-		return petname;
-	}
-	public void setPetname(String petname) {
-		this.petname = petname;
-	}
+	}	
 }

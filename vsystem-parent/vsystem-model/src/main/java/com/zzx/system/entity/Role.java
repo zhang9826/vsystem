@@ -1,40 +1,34 @@
 package com.zzx.system.entity;
 
-/**
- * 权限实体类
- * @author zzx
- *
- * @date 2018年10月9日
- */
 public class Role {
 	/**
-	 * 权限id
+	 * 角色id
 	 */
 	private String rId;
 	/**
-	 * 权限名称 security 识别 ROUTE_** 格式
+	 * 角色名称
 	 */
-	private String routeName;
+	private String rName;
 	/**
-	 * 权限名称 中文
+	 * 角色 中文名称
 	 */
-	private String routeNameZh;
+	private String rNameZh;
 	public String getrId() {
 		return rId;
 	}
 	public void setrId(String rId) {
 		this.rId = rId;
 	}
-	public String getRouteName() {
-		return routeName;
+	public String getrName() {
+		return rName;
 	}
-	public void setRouteName(String routeName) {
-		this.routeName = routeName;
+	public void setrName(String rName) {
+		this.rName = rName;
 	}
-	public String getRouteNameZh() {
-		return routeNameZh;
+	public String getrNameZh() {
+		return rNameZh;
 	}
-	public void setRouteNameZh(String routeNameZh) {
-		this.routeNameZh = routeNameZh;
+	public void setrNameZh(String rNameZh) {
+		this.rNameZh = rNameZh;
 	}
 }

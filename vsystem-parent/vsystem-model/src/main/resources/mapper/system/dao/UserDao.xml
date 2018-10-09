@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzx.system.dao.UserDao">
+	<resultMap type="com.zzx.system.entity.User"
+		id="baseResultMap">
+		<id column="U_ID" property="uId" />
+		<result column="USERNAME" property="username" />
+		<result column="PASSWORD" property="password" />
+		<result column="TELEPTONE" property="telephone" />
+		<result column="ADDRESS" property="address" />
+		<result column="ENABLED" property="enabled" />
+		<result column="PETNAME" property="petname" />
+	</resultMap>
+	<sql id="baseColumn">
+		U_ID,USERNAME,PASSWORD,TELEPTONE,ADDRESS,ENABLED,PETNAME
+	</sql>
+	<select id="findByUsername" resultMap="baseResultMap">
+		SELECT
+		<include refid="baseColumn" />
+		FROM users
+		WHERE 
+		USERNAME=#{username}
+	</select>
+</mapper>

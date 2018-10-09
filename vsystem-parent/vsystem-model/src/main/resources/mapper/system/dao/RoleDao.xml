@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzx.system.dao.RoleDao">
+	<resultMap type="com.zzx.system.entity.Role"
+		id="baseResultMap">
+		<id column="R_ID" property="rId" />
+		<result column="ROLENAME" property="rName" />
+		<result column="ROLENAMEZH" property="rNameZh" />
+	</resultMap>
+
+	<sql id="baseColumn">
+		R_ID,ROLENAME,ROLENAMEZH
+	</sql>
+
+	<sql id="roleColumn">
+		r.R_ID,
+		r.ROLENAME,
+		r.ROLENAMEZH
+	</sql>
+
+	<select id="getRolesByUserId" resultMap="baseResultMap">
+		SELECT
+		<include refid="roleColumn" />
+		FROM
+		role r,users u,user_role ur
+		WHERE
+		r.R_ID = ur.RID
+		AND
+		u.U_ID = ur.UID
+		AND
+		u.U_ID = #{uId}
+	</select>
+
+</mapper>

@@ -1,0 +1,2 @@
+webpackJsonp([2],{"5ui1":function(e,t){},RBiv:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("h1",[this._v("我是User1.vue")])},staticRenderFns:[]};var u=n("VU/8")({},r,!1,function(e){n("5ui1")},null,null);t.default=u.exports}});
+//# sourceMappingURL=2.de19b4400d28ee93a78b.js.map

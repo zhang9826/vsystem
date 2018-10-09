@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzx.system.dao.MenuDao">
+	<resultMap type="com.zzx.system.entity.Menu"
+		id="baseResultMap">
+		<id column="M_ID" property="mId" />
+		<result column="URL" property="url" />
+		<result column="ICON" property="icon" />
+		<result column="PARENTID" property="parentId" />
+		<result column="ROUTE" property="route" />
+		<result column="NAME" property="name" />
+	</resultMap>
+
+	<resultMap type="com.zzx.system.entity.Role"
+		id="roleResultMap">
+		<id column="R_ID" property="rId" />
+		<id column="ROLENAME" property="rName" />
+		<id column="ROLENAMEZH" property="rNameZh" />
+	</resultMap>
+
+	<sql id="roleColumn">
+		r.R_ID,
+		r.ROLENAME,
+		r.ROLENAMEZH
+	</sql>
+	<sql id="baseColumn">
+		M_ID,
+		URL,
+		ICON,
+		ROUTE,
+		PARENTID,
+		NAME
+	</sql>
+	<sql id="menuColumn">
+		m.M_ID,
+		m.URL,
+		m.ICON,
+		m.ROUTE,
+		m.PARENTID,
+		m.NAME
+	</sql>
+	<select id="getMenuByUrl" resultMap="baseResultMap">
+		SELECT
+		<include refid="baseColumn" />
+		FROM `menu`
+		WHERE URL=#{requestUrl}
+	</select>
+
+	<select id="getRoles" resultMap="roleResultMap">
+		SELECT
+		<include refid="roleColumn" />
+		FROM
+		role r,menu m,menu_role mr
+		WHERE
+		r.R_ID=mr.RID
+		AND
+		m.M_ID=mr.MID
+		AND
+		m.M_ID=#{mId}
+	</select>
+	<select id="getMenuByUId" resultMap="baseResultMap">
+		SELECT
+		<include refid="menuColumn" />
+		FROM
+		menu m,
+		menu_role mr,
+		role r,
+		users u,
+		user_role ur
+		WHERE
+		m.`M_ID` = mr.`MID`
+		AND r.`R_ID` = mr.`RID`
+		AND r.`R_ID` = ur.`RID`
+		AND u.`U_ID` = ur.`UID`
+		AND u.`U_ID` = #{uId}
+	</select>
+
+</mapper>
