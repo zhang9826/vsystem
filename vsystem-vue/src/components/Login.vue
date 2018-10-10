@@ -52,8 +52,8 @@ export default {
             formdata.append("username",this.loginForm.username);
             formdata.append("password",this.loginForm.password);
             this.$axios.post("/login",formdata).then(resp=>{
-              if(resp.data.status!="error"){
-               _this.$router.replace('/home');
+              if(resp.data.status=="success"){
+               _this.$router.replace({ path: "/home" })
               }else{
                _this.$message.error(resp.data.msg);
                _this.$refs[formName].resetFields();

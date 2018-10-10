@@ -3,12 +3,12 @@
     background-color="#505050"
     text-color="#fff"
     active-text-color="#ffd04b">
-    <el-submenu v-for="(item,index) in menus" :key="index" :index="$index+''">
+    <el-submenu v-for="(item,index) in menus" :key="index" :index="index+''">
       <template slot="title">
         <i :class="item.icon"/>
         <span>{{item.name}}</span>
       </template>
-        <el-menu-item v-for="child in item.childrenMenus" :key="child" @click="clickitem(child)" :index="child.route">
+        <el-menu-item v-for="child in  item.childrenMenus" :key="child" @click="clickitem(child)" :index="child.route">
           {{child.name}}
         </el-menu-item>
     </el-submenu>

@@ -1,23 +1,24 @@
 package com.zzx.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.stereotype.Component;
 
 import com.zzx.system.component.AccessDecisionManagerImpl;
 import com.zzx.system.component.AccessDeniedHandlerImpl;
+import com.zzx.system.component.AuthenticationSuccessHandlerImpl;
 import com.zzx.system.component.UrlFilterInvocationSecurityMetadataSourceImpl;
 import com.zzx.system.service.impl.UserDetailsServiceImpl;
 
-@Component
-@EnableWebSecurity
+@Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -34,6 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Autowired
 	private AccessDecisionManagerImpl accessDecisionManagerImpl;
+	
+	@Autowired
+	private AuthenticationSuccessHandlerImpl authenticationSuccessHandlerImpl;
 
 	/**
 	 * 403 权限不足 页面
@@ -86,6 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.passwordParameter("password")  //指定密码接收的名称
 		.permitAll() 						//允许基于表单登录的所有的URL 的所有用户的访问。
 		.failureHandler(AuthenticationFailureHandlerImpl)
+		.successHandler(authenticationSuccessHandlerImpl)
 		.and()
 		.httpBasic()
 		.and()

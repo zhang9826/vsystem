@@ -13,7 +13,7 @@ export default new Router({
       hidden: true
     }, {
       path: '/home',
-      name: '主页',
+      name: 'home',
       component: Home,
       children:[
           {

@@ -25,7 +25,7 @@ export default {
       petname: ""
     };
   },
-  methods: {
+   methods: {
     loadPetname() {
       this.$axios.post("/loadPetname").then(resp => {
         if (
