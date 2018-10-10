@@ -23,6 +23,7 @@ export default {
   },
   mounted() {
     this.loadMenu();
+    this.$router.push({ path: "/homepage" });
   },
   methods: {
     loadMenu() {
@@ -48,12 +49,14 @@ export default {
             tempMenus[index].childrenMenus = temp;
             temp = [];
           }
+        }else{
+           this.$router.push({ path: "/" })
         }
-         this.menus = tempMenus;
+        this.menus = tempMenus;
       });
     },
     clickitem(item) {
-      this.$emit('addTabs',item)
+      this.$router.push({ path: item.route });
     }
   }
 };

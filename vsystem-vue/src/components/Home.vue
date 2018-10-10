@@ -1,14 +1,14 @@
 <template>
     <el-container id="container-top">
       <el-aside width="170px">
-        <v-menu @addTabs="addTabs" />
+        <v-menu />
       </el-aside>
        <el-container>
         <el-header>
            <span>{{petname}}</span>
         </el-header>
          <el-main>
-           <v-tabs ref="tabs" />
+           <router-view />
          </el-main>
        </el-container>
     </el-container>
@@ -16,11 +16,9 @@
 
 <script>
 import menu from "./model/Menu.vue";
-import tabs from './model/Tabs.vue'
 export default {
   components: {
     "v-menu": menu,
-    "v-tabs": tabs
   },
   data() {
     return {
@@ -34,11 +32,10 @@ export default {
           resp.data.indexOf("<!DOCTYPE html><html><head><meta charset=utf-8>")
         ) {
           this.petname=resp.data
+        }else{
+          this.$router.push({ path: "/" })
         }
       });
-    },
-    addTabs(item){
-      this.$refs.tabs.addTabs(item)
     }
   },
   mounted() {
