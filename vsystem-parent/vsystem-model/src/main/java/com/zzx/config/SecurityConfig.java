@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -18,7 +18,7 @@ import com.zzx.system.component.UrlFilterInvocationSecurityMetadataSourceImpl;
 import com.zzx.system.service.impl.UserDetailsServiceImpl;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -95,12 +95,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.httpBasic()
 		.and()
 		.logout() 							//提供注销支持，使用WebSecurityConfigurerAdapter会自动被应用
-		.permitAll()
-		.invalidateHttpSession(true) 		//指定是否在注销时让HttpSession 无效 。 默认设置为  true
+		.permitAll()		
 		.and()
 		.csrf()
 		.disable()					//禁掉csrf  后面加
 		.exceptionHandling()
 		.accessDeniedHandler(accessDeniedHandlerImpl);
+		http
+		.sessionManagement()
+		.maximumSessions(1)
+		.expiredUrl("/login");
 	}
 }

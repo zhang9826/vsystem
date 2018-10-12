@@ -9,7 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
-   *   实现UserDetails接口，供程序调用
+ * 实现UserDetails接口，供程序调用
+ * 
  * @author zzx
  *
  */
@@ -18,37 +19,39 @@ public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private User user;
-	
+
 	private List<Role> roles;
-	
+
 	public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+		this.roles = roles;
+	}
 
 	/**
 	 * [Description:无参构造]
 	 */
-    public UserDetailsImpl() {
-    	
-    }
+	public UserDetailsImpl() {
 
-    /**
-     * [Description:用user构造]
-     * @param user
-     */
-    public UserDetailsImpl(User user) {
-        this.user=user;
-    }
-    
-    /**
-     * [Description:用user 和 List<Role> 构造]
-     * @param user
-     * @param roles
-     */
-    public UserDetailsImpl(User user, List<Role> roles) {
-    	this.user=user;  
-    	this.roles = roles;    
-    }
+	}
+
+	/**
+	 * [Description:用user构造]
+	 * 
+	 * @param user
+	 */
+	public UserDetailsImpl(User user) {
+		this.user = user;
+	}
+
+	/**
+	 * [Description:用user 和 List<Role> 构造]
+	 * 
+	 * @param user
+	 * @param roles
+	 */
+	public UserDetailsImpl(User user, List<Role> roles) {
+		this.user = user;
+		this.roles = roles;
+	}
 
 	public List<Role> getRoles() {
 		return roles;
@@ -56,15 +59,16 @@ public class UserDetailsImpl implements UserDetails {
 
 	/**
 	 * [Description:返回用户所有角色的封装，一个Role对应一个GrantedAuthority]
-	 *---------------------------
-	 * @Date Create in  2018年9月28日 下午10:22:59
+	 * ---------------------------
+	 * 
+	 * @Date Create in 2018年9月28日 下午10:22:59
 	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		for(Role role : roles) {
-			authorities.add(new SimpleGrantedAuthority(role.getrName())); 
-			}      
+		for (Role role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getrName()));
+		}
 		return authorities;
 	}
 
@@ -93,6 +97,7 @@ public class UserDetailsImpl implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
 	public User getUser() {
 		return user;
 	}
@@ -101,12 +106,20 @@ public class UserDetailsImpl implements UserDetails {
 		this.user = user;
 	}
 
+	public boolean equals(Object obj) {
+		return obj instanceof UserDetailsImpl ? this.user.getUsername().equals(((UserDetailsImpl) obj).getUser().getUsername()) : false;
+	}
+
+	public int hashCode() {
+		return this.user.getUsername().hashCode();
+	}
+
 	/**
 	 * 是否过期
 	 */
 	@Override
 	public boolean isEnabled() {
-		if(user.getEnabled().equals("1"))
+		if (user.getEnabled().equals("1"))
 			return true;
 		return false;
 	}

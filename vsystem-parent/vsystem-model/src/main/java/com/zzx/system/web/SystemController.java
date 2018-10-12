@@ -17,7 +17,6 @@ import com.zzx.system.service.MenuService;
 
 @RestController
 public class SystemController {
-	
 	@Autowired
 	private MenuService menuService;
 	
