@@ -53,7 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 		auth.userDetailsService(userDetailsServiceImpl);
 	}
 
@@ -62,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/index.html", "/static/**");
+		web.ignoring().antMatchers("/index.html", "/static/**","/");
 	}
 
 	/**

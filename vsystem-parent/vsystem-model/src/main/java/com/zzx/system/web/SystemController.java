@@ -22,7 +22,7 @@ public class SystemController {
 	@Autowired
 	private MenuService menuService;
 	
-	@RequestMapping("")
+	@RequestMapping("/")
 	public void  login(HttpServletResponse resp,HttpServletRequest req) throws IOException, ServletException {
 		req.getRequestDispatcher("/index.html").forward(req, resp);
 	}
