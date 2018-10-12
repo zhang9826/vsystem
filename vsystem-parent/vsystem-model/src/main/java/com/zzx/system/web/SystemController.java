@@ -3,6 +3,8 @@ package com.zzx.system.web;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,9 @@ public class SystemController {
 	@Autowired
 	private MenuService menuService;
 	
-	@RequestMapping("login_p")
-	public void  login(HttpServletResponse resp) throws IOException {
-		resp.sendRedirect("/index.html");
+	@RequestMapping("")
+	public void  login(HttpServletResponse resp,HttpServletRequest req) throws IOException, ServletException {
+		req.getRequestDispatcher("/index.html").forward(req, resp);
 	}
 	@RequestMapping(value="/loadMenu",method=RequestMethod.POST)
 	public List<Menu> loadMenu(){

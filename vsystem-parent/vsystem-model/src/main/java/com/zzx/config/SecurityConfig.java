@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/index.html", "/static/**","/login_p");
+		web.ignoring().antMatchers("/index.html", "/static/**");
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		)
 		.and()
 		.formLogin() 						//允许用户进行基于表单的认证
-		.loginPage("/login_p") 				//登录页面
+		.loginPage("/") 				//登录页面
 		.loginProcessingUrl("/login")
 		.usernameParameter("username")  //指定用户名接收的名称
 		.passwordParameter("password")  //指定密码接收的名称
