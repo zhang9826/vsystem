@@ -5,7 +5,7 @@
       </el-aside>
        <el-container>
         <el-header>
-           <span>{{petname}}</span>
+          <v-navbar />
         </el-header>
          <el-main>
            <router-view />
@@ -16,31 +16,17 @@
 
 <script>
 import menu from "./model/Menu.vue";
+import navbar from "./model/Navbar.vue";
 export default {
   components: {
     "v-menu": menu,
+    "v-navbar":navbar
   },
   data() {
     return {
       petname: ""
     };
   },
-   methods: {
-    loadPetname() {
-      this.$axios.post("/loadPetname").then(resp => {
-        if (
-          resp.data.indexOf("<!DOCTYPE html><html><head><meta charset=utf-8>")
-        ) {
-          this.petname=resp.data
-        }else{
-          this.$router.push({ path: "/" })
-        }
-      });
-    }
-  },
-  mounted() {
-    this.loadPetname();
-  }
 };
 </script>
 

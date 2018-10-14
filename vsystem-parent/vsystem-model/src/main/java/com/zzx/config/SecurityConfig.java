@@ -93,7 +93,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.httpBasic()
 		.and()
-		.logout() 							//提供注销支持，使用WebSecurityConfigurerAdapter会自动被应用
+		.logout() 	//提供注销支持，使用WebSecurityConfigurerAdapter会自动被应用
+		.logoutSuccessUrl("/")
 		.permitAll()		
 		.and()
 		.csrf()
@@ -103,6 +104,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.sessionManagement()
 		.maximumSessions(1)
-		.expiredUrl("/login");
+		.expiredUrl("/");
 	}
 }
