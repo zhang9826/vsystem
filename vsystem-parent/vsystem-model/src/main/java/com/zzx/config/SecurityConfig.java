@@ -53,7 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 		auth.userDetailsService(userDetailsServiceImpl);
 	}
 
@@ -62,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/index.html", "/static/**","/login_p");
+		web.ignoring().antMatchers("/index.html", "/static/**","/");
 	}
 
 	/**
@@ -84,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		)
 		.and()
 		.formLogin() 						//允许用户进行基于表单的认证
-		.loginPage("/login_p") 				//登录页面
+		.loginPage("/") 				//登录页面
 		.loginProcessingUrl("/login")
 		.usernameParameter("username")  //指定用户名接收的名称
 		.passwordParameter("password")  //指定密码接收的名称
@@ -94,7 +93,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.httpBasic()
 		.and()
-		.logout() 							//提供注销支持，使用WebSecurityConfigurerAdapter会自动被应用
+		.logout() 	//提供注销支持，使用WebSecurityConfigurerAdapter会自动被应用
+		.logoutSuccessUrl("/")
 		.permitAll()		
 		.and()
 		.csrf()
@@ -104,6 +104,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.sessionManagement()
 		.maximumSessions(1)
-		.expiredUrl("/login");
+		.expiredUrl("/");
 	}
 }

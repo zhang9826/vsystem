@@ -9,8 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -29,16 +32,26 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
 		Map<String,Object> map = new LinkedHashMap<>();
 		try {
 			out = res.getWriter();
-			if(e instanceof UsernameNotFoundException || e instanceof BadCredentialsException) {
+			if (e instanceof BadCredentialsException ||
+                    e instanceof UsernameNotFoundException) {
 				map.put("status", "error");
-				map.put("msg", "用户名或密码输入错误，登录失败!");
-			}else if (e instanceof DisabledException) {
-				map.put("status", "error");
-				map.put("msg", "账户被禁用，登录失败，请联系管理员!");
-			}else {
-				map.put("status", "error");
-				map.put("msg", "登录失败");
-			}
+				map.put("msg", "账户名或者密码输入错误!");
+            } else if (e instanceof LockedException) {
+            	map.put("status", "error");
+				map.put("msg", "账户被锁定，请联系管理员!");
+            } else if (e instanceof CredentialsExpiredException) {
+            	map.put("status", "error");
+				map.put("msg", "密码过期，请联系管理员!");
+            } else if (e instanceof AccountExpiredException) {
+            	map.put("status", "error");
+				map.put("msg", "账户过期，请联系管理员!");
+            } else if (e instanceof DisabledException) {
+            	map.put("status", "error");
+				map.put("msg", "账户被禁用，请联系管理员!");
+            } else {
+            	map.put("status", "error");
+				map.put("msg", "登录失败!");
+            }
 			ObjectMapper objectMapper = new ObjectMapper();
 			String json = objectMapper.writeValueAsString(map);
 			out.write(json);
