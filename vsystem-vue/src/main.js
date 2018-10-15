@@ -4,6 +4,7 @@ import router from './router'
 import axios from "axios"
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import i18n from './i18n/i18n'
 Vue.use(ElementUI, {
   size: 'small',
   zIndex: 3000
@@ -15,8 +16,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: {
-    App
-  },
+  i18n,
+  components: {App},
   template: '<App/>'
 })

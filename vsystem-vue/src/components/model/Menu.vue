@@ -6,10 +6,10 @@
     <el-submenu v-for="(item,index) in menus" :key="index" :index="index+''">
       <template slot="title">
         <i :class="item.icon"/>
-        <span>{{item.name}}</span>
+        <span>{{$t(item.name)}}</span>
       </template>
         <el-menu-item v-for="child in  item.childrenMenus" :key="child" @click="clickitem(child)" :index="child.route">
-          {{child.name}}
+          {{$t(child.name)}}
         </el-menu-item>
     </el-submenu>
   </el-menu>
@@ -23,12 +23,11 @@ export default {
   },
   mounted() {
     this.loadMenu();
-    this.$router.push({ path: "/homepage" });
   },
   methods: {
     loadMenu() {
       var _this = this;
-      _this.$axios.post("/loadMenu").then(resp => {
+      _this.$axios.get("/loadMenu").then(resp => {
         var tempMenus = [];
         var respMenus = resp.data;
         var temp = [];

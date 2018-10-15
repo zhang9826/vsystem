@@ -35,11 +35,6 @@ export default new Router({
             path:'/admin2',
             name:'admin2',
             component:resolve=>require(['@/components/views/Admin2.vue'],resolve)
-          },
-          {
-            path:'/homepage',
-            name:'homepage',
-            component:resolve=>require(['@/components/views/Homepage.vue'],resolve)
           }
       ],
       hidden: true,

@@ -1,9 +1,22 @@
 <<template>
-   <h1>我是Admin1.vue</h1>
+  <div>
+
+
+  </div>
 </template>
 
 <script>
 export default {
+    mounted(){
+
+    },
+    methods:{
+        loadUser(){
+            this.$axios.get("/loadUser").then(resp=>{
+
+            })
+        }
+    }
 
 }
 </script>
