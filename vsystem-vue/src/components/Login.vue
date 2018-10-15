@@ -1,15 +1,15 @@
 <template>
-<div id="login">
+<div class="login">
   <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm"  label-width="100px" class="login-form">
   <el-form-item label="请输入用户名:" prop="username">
-    <el-input type="text" v-model="loginForm.username" autocomplete="off"></el-input>
+    <el-input type="text" v-model="loginForm.username" autocomplete="off"  />
   </el-form-item>
-  <el-form-item label="请输入密码:" prop="password">
-    <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
+  <el-form-item label="请输入密码:" prop="password" >
+    <el-input type="password" v-model="loginForm.password" autocomplete="off"  />
   </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
-    <el-button @click="resetForm('loginForm')">重置</el-button>
+  <el-form-item  class="form-item">
+    <el-button type="primary" @click="submitForm('loginForm')" >登录</el-button>
+    <el-button @click="resetForm('loginForm')" >重置</el-button>
   </el-form-item>
 </el-form>
 </div>
@@ -72,14 +72,22 @@ export default {
 </script>
 <style scoped>
   .login-form {
-    border-radius: 15px;
     background-clip: padding-box;
-    margin: 180px auto;
+    margin: 290px auto;
     width: 350px;
     padding: 35px 35px 15px 35px;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    box-shadow: 0 0 25px #cac6c6;
+  }
+  .login{
+    width: 100%;
+    height: 100%;
+    display: inline-table;
+    background-image: url("http://pic1.win4000.com/wallpaper/2018-10-10/5bbd6379b2b20.jpg")
+  }
+  /* .form-item{
+    opacity:1 !important
+  } */
+  .el-button{
+     opacity:0.5
   }
 </style>
 

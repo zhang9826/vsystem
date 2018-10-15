@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 /**
  * 实现UserDetails接口，供程序调用
  * 
@@ -15,7 +16,8 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  */
 public class UserDetailsImpl implements UserDetails {
-
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	private User user;
@@ -107,6 +109,7 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	public boolean equals(Object obj) {
+		
 		return obj instanceof UserDetailsImpl ? this.user.getUsername().equals(((UserDetailsImpl) obj).getUser().getUsername()) : false;
 	}
 
