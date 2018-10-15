@@ -26,12 +26,12 @@ public class SystemController {
 	public void  login(HttpServletResponse resp,HttpServletRequest req) throws IOException, ServletException {
 		req.getRequestDispatcher("/index.html").forward(req, resp);
 	}
-	@RequestMapping(value="/loadMenu",method=RequestMethod.POST)
+	@RequestMapping(value="/loadMenu",method=RequestMethod.GET)
 	public List<Menu> loadMenu(){
 		String uId = ((UserDetailsImpl)SecurityContextHolder.getContext().getAuthentication() .getPrincipal()).getUser().getuId();
 		return menuService.getMenuByUId(uId);
 	}
-	@RequestMapping(value="/loadPetname",method=RequestMethod.POST)
+	@RequestMapping(value="/loadPetname",method=RequestMethod.GET)
 	public String loadPetname(){
 		return  ((UserDetailsImpl)SecurityContextHolder.getContext().getAuthentication() .getPrincipal()).getUser().getPetname();
 	}

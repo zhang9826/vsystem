@@ -15,18 +15,13 @@
 </template>
 
 <script>
-import menu from "./model/Menu.vue";
-import navbar from "./model/Navbar.vue";
+import menu from "./model/Menu";
+import navbar from "./model/Navbar";
 export default {
   components: {
     "v-menu": menu,
     "v-navbar":navbar
-  },
-  data() {
-    return {
-      petname: ""
-    };
-  },
+  }
 };
 </script>
 
